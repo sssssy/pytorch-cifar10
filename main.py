@@ -45,10 +45,7 @@ net = Net()
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=0.001)
 
-print("Initializing")
 net.cuda()
-
-print("Start training")
 
 for epoch in range(10):
  
@@ -74,8 +71,11 @@ for epoch in range(10):
  
 print('Finished Training')
 
-torch.save(net, './checkpoints/cifar10.pkl')
-net = torch.load('./checkpoints/cifar10.pkl')
+current_time = time.strftime("_%m-%d_%H%M", time.localtime())
+prefix = './checkpoints/' + current_time
+name = prefix + current_time + '.pth'
+torch.save(net, filename)
+net = torch.load(filename)
 
 correct = 0
 total = 0
