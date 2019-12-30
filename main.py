@@ -3,6 +3,7 @@ import torchvision
 import torch.nn as nn
 import torchvision.transforms as transforms
 import torch.optim as optim
+import time
  
 transform = transforms.Compose(
     [transforms.ToTensor(),
@@ -67,13 +68,13 @@ for epoch in range(10):
         optimizer.step()
         
         if i % 100 == 0:
-	        print('[%d, %5d] loss: %.4f' %(epoch + 1, (i+1)*batch_size, loss.item()))
+	        print('[%d, %5d] loss: %.4f' %(epoch + 1, i, loss.item()))
  
 print('Finished Training')
 
-current_time = time.strftime("_%m-%d_%H%M", time.localtime())
-prefix = './checkpoints/' + current_time
-name = prefix + current_time + '.pth'
+prefix = './checkpoints/'
+current_time = time.strftime("%m-%d_%H%M", time.localtime())
+filename = prefix + current_time + '.pth'
 torch.save(net, filename)
 net = torch.load(filename)
 
