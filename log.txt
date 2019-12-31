@@ -1,4 +1,28 @@
 test 1 12302045
-default config
-acc = 61%
+最简单的两层卷积，三层FC
+Accuracy of the network on the 10000 test images: 61 %
+Accuracy of plane : 66 %
+Accuracy of   car : 74 %
+Accuracy of  bird : 52 %
+Accuracy of   cat : 37 %
+Accuracy of  deer : 55 %
+Accuracy of   dog : 49 %
+Accuracy of  frog : 73 %
+Accuracy of horse : 72 %
+Accuracy of  ship : 74 %
+Accuracy of truck : 62 %
 
+
+test 2 12311028
+全卷积 加入BN DROPOUT
+Accuracy of the network on the 10000 test images: 69 %
+Accuracy of plane : 73 %
+Accuracy of   car : 84 %
+Accuracy of  bird : 65 %
+Accuracy of   cat : 50 %
+Accuracy of  deer : 66 %
+Accuracy of   dog : 67 %
+Accuracy of  frog : 70 %
+Accuracy of horse : 67 %
+Accuracy of  ship : 68 %
+Accuracy of truck : 79 %
