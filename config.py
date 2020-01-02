@@ -4,8 +4,6 @@ from __future__ import print_function
 class DefaultConfig(object):
 
 	root = '/fanjiahui/repositories/pytorch-cifar10'
-	load_model_path = None
-	# 需要加载模型或者测试时才要给这个参数
 
 	input_channels = 3
 	batch_size = 128
@@ -15,7 +13,7 @@ class DefaultConfig(object):
 
 	max_epoch = 100
 	lr = 0.1
-	lr_decay = 0.9
+	lr_decay = 0.7
 	momentum=0.9
 	weight_decay = 5e-4
 
