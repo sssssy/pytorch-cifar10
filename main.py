@@ -83,10 +83,11 @@ for epoch in range(opt.max_epoch):
         if i % opt.print_freq == 0:
 	        print('[%d, %5d] loss: %.4f' %(epoch + 1, i, loss.item()))
 
-    if epoch % 20 == 0 & epoch != 0:
+    if epoch % 5 == 0:
         lr = lr * opt.lr_decay
         for param_group in optimizer.param_groups:
             param_group['lr'] = lr
+        print('lr = %.4f' % (lr))
 
 print('Finished Training')
 
