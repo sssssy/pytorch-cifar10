@@ -8,16 +8,17 @@ class DefaultConfig(object):
 	# 需要加载模型或者测试时才要给这个参数
 
 	input_channels = 3
-	batch_size = 64
+	batch_size = 128
 	use_gpu = True
 	num_workers = 4
-	print_freq = 500# 每几个batch打印一次信息
+	print_freq = 250# 每几个batch打印一次信息
 	val_freq = 400# 每几个batch调用一次val，以供调试
 
-	max_epoch = 10
-	lr = 0.001
+	max_epoch = 100
+	lr = 0.01
 	lr_decay = 0.95
-	weight_decay = 1e-4
+	momentum=0.9
+	weight_decay = 5e-4
 
 	debug_file = './debug'
 	

@@ -12,29 +12,35 @@ from config import DefaultConfig
 ######################################
 # Initializing
 ######################################
- 
-transform = transforms.Compose(
-    [transforms.ToTensor(),
-     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
- 
-trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
-                                        download=True, transform=transform)
-trainloader = torch.utils.data.DataLoader(trainset, batch_size=4,
-                                          shuffle=True, num_workers=2)
- 
-testset = torchvision.datasets.CIFAR10(root='./data', train=False,
-                                       download=True, transform=transform)
-testloader = torch.utils.data.DataLoader(testset, batch_size=4,
-                                         shuffle=False, num_workers=2)
- 
-classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
 opt = DefaultConfig()
+ 
+transform_train = transforms.Compose(
+    transforms.RandomCrop(32, padding=4),
+    transforms.RandomHorizontalFlip(),
+    [transforms.ToTensor(),
+     transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))])
+
+transform_test = transforms.Compose(
+    [transforms.ToTensor(),
+     transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))])
+
+trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
+                                        download=True, transform=transform_train)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=opt.batch_size,
+                                          shuffle=True, num_workers=opt.num_workers)
+ 
+testset = torchvision.datasets.CIFAR10(root='./data', train=False,
+                                       download=True, transform=transform_test)
+testloader = torch.utils.data.DataLoader(testset, batch_size=opt.batch_size,
+                                         shuffle=False, num_workers=opt.num_workers)
+ 
+classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
 '''
  Remember to update this!
 '''
-net = Net()
+net = resnet18()
 if opt.use_gpu == True:
     net.cuda()
 
@@ -44,9 +50,10 @@ if opt.use_gpu == True:
 
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(net.parameters(), lr=opt.lr)
+optimizer = optim.SGD(net.parameters(), lr=opt.lr,
+             momentum=opt.momentum, weight_decay=opt.weight_decay)
 
-for epoch in range(10):
+for epoch in range(opt.max_epoch):
  
     running_loss = 0.
 
@@ -81,8 +88,10 @@ current_time = time.strftime("%m%d%H%M", time.localtime())
 filename = prefix + current_time + '.pth'
 torch.save(net, filename)
 
-log = open('./log.txt', 'w+')
+log = open('./log.txt', 'a')
+message = input('INPUT LOG MESSAGE:\n')
 print('\n\ntest ' + current_time, file = log)
+print(message, file = log)
 
 ########################################
 # Testing
