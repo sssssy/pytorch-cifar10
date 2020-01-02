@@ -41,3 +41,18 @@ Accuracy of  frog : 77 %
 Accuracy of horse : 84 %
 Accuracy of  ship : 93 %
 Accuracy of truck : 92 %
+
+
+test 01021618
+resnet18 lr_decay=0.8 decay_freq=5 batchsize=128 dropout=0.3
+Accuracy of the network on the 10000 test images: 79 %
+Accuracy of plane : 79 %
+Accuracy of   car : 75 %
+Accuracy of  bird : 72 %
+Accuracy of   cat : 52 %
+Accuracy of  deer : 77 %
+Accuracy of   dog : 69 %
+Accuracy of  frog : 72 %
+Accuracy of horse : 76 %
+Accuracy of  ship : 93 %
+Accuracy of truck : 87 %
