@@ -35,7 +35,7 @@ opt = DefaultConfig()
  Remember to update this!
 '''
 net = Net()
-if opt.use_gpu = True:
+if opt.use_gpu == True:
     net.cuda()
 
 ########################################
