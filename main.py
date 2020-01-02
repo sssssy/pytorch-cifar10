@@ -48,6 +48,7 @@ if opt.use_gpu == True:
 # Training
 ########################################
 
+print('Start training')
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=opt.lr,
