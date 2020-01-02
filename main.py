@@ -73,7 +73,7 @@ for epoch in range(10):
 print('Finished Training')
 
 ########################################
-# save the model
+# Save the model
 ########################################
 
 prefix = './checkpoints/'
@@ -81,6 +81,10 @@ current_time = time.strftime("%m-%d_%H%M", time.localtime())
 filename = prefix + current_time + '.pth'
 torch.save(net, filename)
 net = torch.load(filename)
+
+########################################
+# Testing
+########################################
 
 correct = 0
 total = 0
