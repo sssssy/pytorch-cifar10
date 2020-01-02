@@ -5,6 +5,7 @@ import torch.nn.functional as F
 import torchvision.transforms as transforms
 import torch.optim as optim
 import time
+import os
 
 from model import *
 from config import DefaultConfig
@@ -53,12 +54,16 @@ print('Start training')
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=opt.lr,
              momentum=opt.momentum, weight_decay=opt.weight_decay)
+lr = opt.lr
 
 for epoch in range(opt.max_epoch):
  
     running_loss = 0.
 
     batch_size = opt.batch_size
+
+    if os.path.exists('./quit'):
+        break
     
     for i, data in enumerate(
             torch.utils.data.DataLoader(trainset, batch_size=batch_size,
@@ -77,7 +82,11 @@ for epoch in range(opt.max_epoch):
         
         if i % opt.print_freq == 0:
 	        print('[%d, %5d] loss: %.4f' %(epoch + 1, i, loss.item()))
- 
+
+    lr = lr * opt.lr_decay
+    for param_group in optimizer.param_groups:
+        param_group['lr'] = lr
+
 print('Finished Training')
 
 ########################################
