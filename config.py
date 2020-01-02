@@ -11,8 +11,7 @@ class DefaultConfig(object):
 	batch_size = 128
 	use_gpu = True
 	num_workers = 2
-	print_freq = 250# 每几个batch打印一次信息
-	val_freq = 400# 每几个batch调用一次val，以供调试
+	print_freq = 100# 每几个batch打印一次信息
 
 	max_epoch = 100
 	lr = 0.01
