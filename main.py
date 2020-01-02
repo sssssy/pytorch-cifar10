@@ -57,7 +57,7 @@ for epoch in range(10):
                                         shuffle=True, num_workers=opt.num_workers), 0):
         
         inputs, labels = data
-        if opt.use_gpu = True:
+        if opt.use_gpu == True:
             inputs, labels = inputs.cuda(), labels.cuda()
         
         optimizer.zero_grad()
@@ -77,36 +77,40 @@ print('Finished Training')
 ########################################
 
 prefix = './checkpoints/'
-current_time = time.strftime("%m-%d_%H%M", time.localtime())
+current_time = time.strftime("%m%d%H%M", time.localtime())
 filename = prefix + current_time + '.pth'
 torch.save(net, filename)
-net = torch.load(filename)
+
+log = open('./log.txt', 'w+')
+print('\n\ntest ' + current_time, file = log)
 
 ########################################
 # Testing
 ########################################
+
+net = torch.load(filename)
 
 correct = 0
 total = 0
 with torch.no_grad():
     for data in testloader:
         images, labels = data
-        if opt.use_gpu = True:
+        if opt.use_gpu == True:
             images, labels = images.cuda(), labels.cuda()
         outputs = net(images)
         _, predicted = torch.max(outputs.data, 1)
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
- 
+
 print('Accuracy of the network on the 10000 test images: %d %%' % (
-    100 * correct / total))
+    100 * correct / total), file = log)
  
 class_correct = list(0. for i in range(10))
 class_total = list(0. for i in range(10))
 with torch.no_grad():
     for data in testloader:
         images, labels = data
-        if opt.use_gpu = True:
+        if opt.use_gpu == True:
             images, labels = images.cuda(), labels.cuda()
         outputs = net(images)
         _, predicted = torch.max(outputs, 1)
@@ -119,4 +123,5 @@ with torch.no_grad():
  
 for i in range(10):
     print('Accuracy of %5s : %2d %%' % (
-        classes[i], 100 * class_correct[i] / class_total[i]))
+        classes[i], 100 * class_correct[i] / class_total[i]),
+        file = log)
