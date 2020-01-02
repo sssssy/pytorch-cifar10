@@ -14,8 +14,8 @@ class DefaultConfig(object):
 	print_freq = 100# 每几个batch打印一次信息
 
 	max_epoch = 100
-	lr = 0.01
-	lr_decay = 0.95
+	lr = 0.1
+	lr_decay = 0.9
 	momentum=0.9
 	weight_decay = 5e-4
 
