@@ -1,1 +1,1 @@
-http://mirrors.aliyun.com/pypi/packages/ae/d9/60e1e73abffaeb0aaca7cc2bcfeb973ec3b314a3e46e26270966829b5207/tensorflow_gpu-1.10.0-cp36-cp36m-win_amd64.whl#sha256=bf08d9208e58dae11934a7066d9ef644ac99098a714b3bace46cd7807625e4a6
+http://mirrors.aliyun.com/pypi/packages/74/81/d8760055a1ddd5adac9c66b89ec66b582a8c587cb17b3ed9b2e53c3bbe28/tensorflow_gpu-1.10.0rc1-cp36-cp36m-manylinux1_x86_64.whl#sha256=59dc61e588a3ca570c47e6edb7977e4cd0a02ffa81825c07d64cb2f1f810a204
